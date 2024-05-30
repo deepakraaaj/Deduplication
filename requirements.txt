@@ -1,0 +1,7 @@
+Flask
+Flask-Login
+boto3
+numpy
+scipy
+sqlite3
+tabulate
