@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 import numpy as np
 import scipy.io.wavfile
 import boto3
@@ -94,6 +95,18 @@ def get_formatted_data_from_db(cursor):
             "master_file": master
         })
     return formatted_data
+
+
+
+load_dotenv()  # Load environment variables from .env file
+
+app = Flask(__name__)
+app.config['FLASK_ENV'] = os.getenv('FLASK_ENV')
+app.config['S3_BUCKET'] = os.getenv('S3_BUCKET')
+app.config['AWS_ACCESS_KEY_ID'] = os.getenv('AWS_ACCESS_KEY_ID')
+app.config['AWS_SECRET_ACCESS_KEY'] = os.getenv('AWS_SECRET_ACCESS_KEY')
+app.config['AWS_DEFAULT_REGION'] = os.getenv('AWS_DEFAULT_REGION')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
